@@ -1,0 +1,14 @@
+{
+  "name": "modena-examples",
+  "version": "1.0.0",
+  "description": "Examples of applications using modena as express server wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carles Capellas <capellas.carles@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "modena": "^1.0.0-rc4"
+  }
+}
