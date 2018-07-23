@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <title>Ying list</title>
+    <% include partials/_head.ejs %>
+</head>
+
+<body>
+	<% include partials/_header.ejs %>
+
+    <a href="/modena-authentication-template/">Home</a>
+
+	<h3>Ying list</h3>
+
+    <a href="/modena-authentication-template/ying/create" id="create-button">Create</a>
+
+    <br /><br />
+
+	<div id="ying-list"></div>
+  
+  	<% include partials/_footer.ejs %>
+
+    <script type="text/javascript" src="<%= asset('js/ying-list.js') %>"></script>
+</body>
+</html>

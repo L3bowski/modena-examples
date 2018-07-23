@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <title>Ying edit</title>
+    <% include partials/_head.ejs %>
+</head>
+
+<body>
+	<% include partials/_header.ejs %>
+
+	<a href="/modena-authentication-template/ying">Back to list</a>
+
+	<div id="element-wrapper" data-element-id="<%= yingId %>">
+        <div>
+            <label>Name:</label>
+            <input id="element-name" type="text" />
+        </div>
+        <div>
+            <button type="button" id="action-button">Save</button>
+        </div>
+    </div>
+
+	<% include partials/_footer.ejs %>
+
+    <script type="text/javascript" src="<%= asset('js/ying-edit.js') %>"></script>
+</body>
+</html>

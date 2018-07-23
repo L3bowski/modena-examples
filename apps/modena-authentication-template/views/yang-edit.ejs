@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <title>Yang edit</title>
+    <% include partials/_head.ejs %>
+</head>
+
+<body>
+	<% include partials/_header.ejs %>
+
+	<a href="/modena-authentication-template/yang">Back to list</a>
+
+	<div id="element-wrapper" data-element-id="<%= yangId %>">
+        <div>
+            <label>Name:</label>
+            <input id="element-name" type="text" />
+        </div>
+        <div>
+            <button type="button" id="action-button">Save</button>
+        </div>
+    </div>
+
+	<% include partials/_footer.ejs %>
+
+    <script type="text/javascript" src="<%= asset('js/yang-edit.js') %>"></script>
+</body>
+</html>
