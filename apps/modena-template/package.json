@@ -1,0 +1,15 @@
+{
+  "name": "modena-template",
+  "version": "1.0.0",
+  "description": "Simple modena application template",
+  "main": "regular-index.js",
+  "scripts": {
+    "start": "node regular-index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carles Capellas <capellas.carles@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
