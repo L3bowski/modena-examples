@@ -10,6 +10,6 @@
   "author": "Carles Capellas <capellas.carles@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "modena": "^1.0.0-rc5"
+    "modena": "1.0.0-rc12"
   }
 }
