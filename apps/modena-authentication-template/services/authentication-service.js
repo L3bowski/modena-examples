@@ -42,8 +42,6 @@ const getClientSideInfo = (user, permissions) => {
 
 module.exports = {
 	getClientSideInfo,
-	handlers: {
-		userAuthenticator,
-		userDeserializer
-	}
+	userAuthenticator,
+	userDeserializer
 };
