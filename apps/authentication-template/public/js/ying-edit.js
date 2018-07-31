@@ -1,4 +1,4 @@
-$(function() {
+$(function() {	
 	var elementWrapper = $('#element-wrapper');
 	var elementId = elementWrapper.data('element-id');
 	var elementName = $('#element-name');
@@ -16,14 +16,14 @@ $(function() {
 		actionButton.on('click', function() {
 			$.ajax({
 				method: 'POST',
-				url: '/modena-authentication-template/api/yang',
+				url: '/authentication-template/api/ying',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					name: elementName.val()
 				})
 			})
 			.then(function (element) {
-				document.location.href = '/modena-authentication-template/yang/details?id=' + element.id;
+				document.location.href = '/authentication-template/ying/details?id=' + element.id;
 			})
 			.fail(window.application.ajaxFailHandler);
 		});
@@ -33,7 +33,7 @@ $(function() {
 			actionButton.addClass('hidden');
 			unauthorizedMsg.addClass('hidden');
 
-			if (user && window.application.userHasPermission(user, 'yang:create')) {
+			if (user && window.application.userHasPermission(user, 'ying:create')) {
 				elementWrapper.removeClass('hidden');
 				actionButton.removeClass('hidden');
 			}
@@ -41,14 +41,14 @@ $(function() {
 				unauthorizedMsg.removeClass('hidden');
 			}
 		});
-		window.application.authentication.pageLoad(['yang:create']);
+		window.application.authentication.pageLoad(['ying:create']);
 	}
 
 	function updatePageLoad() {
 		actionButton.on('click', function() {
 			$.ajax({
 				method: 'PUT',
-				url: '/modena-authentication-template/api/yang',
+				url: '/authentication-template/api/ying',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					id: elementId,
@@ -56,7 +56,7 @@ $(function() {
 				})
 			})
 			.then(function (element) {
-				document.location.href = '/modena-authentication-template/yang/details?id=' + element.id;
+				document.location.href = '/authentication-template/ying/details?id=' + element.id;
 			})
 			.fail(window.application.ajaxFailHandler);
 		});
@@ -66,10 +66,10 @@ $(function() {
 			actionButton.addClass('hidden');
 			unauthorizedMsg.addClass('hidden');
 
-			if (user && window.application.userHasPermission(user, 'yang:edit')) {
+			if (user && window.application.userHasPermission(user, 'ying:edit')) {
 				return $.ajax({
 					method: 'GET',
-					url: '/modena-authentication-template/api/yang/getById',
+					url: '/authentication-template/api/ying/getById',
 					dataType: 'json',
 					data: {
 						id: elementId
@@ -86,6 +86,6 @@ $(function() {
 				unauthorizedMsg.removeClass('hidden');
 			}
 		});
-		window.application.authentication.pageLoad(['yang:edit']);
+		window.application.authentication.pageLoad(['ying:edit']);
 	}
 });

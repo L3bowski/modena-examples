@@ -1,5 +1,5 @@
 {
-  "name": "modena-authentication-template",
+  "name": "authentication-template",
   "version": "1.0.0",
   "description": "Modena application template with passport local authentication",
   "main": "regular-index.js",

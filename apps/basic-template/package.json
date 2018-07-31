@@ -1,5 +1,5 @@
 {
-  "name": "modena-template",
+  "name": "basic-template",
   "version": "1.0.0",
   "description": "Simple modena application template",
   "main": "regular-index.js",

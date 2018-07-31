@@ -16,12 +16,12 @@ $(function() {
 				if (window.application.userHasPermission(user, 'yang:view')) {
 					$.ajax({
 						method: 'GET',
-						url: '/modena-authentication-template/api/yang',
+						url: '/authentication-template/api/yang',
 						dataType: 'json'
 					})
 					.then(function (yang) {
 						yang.forEach(function(element) {
-							itemsList.append('<p><a href="/modena-authentication-template/yang/details?id=' + element.id + '">' + element.name + '</a></p>');
+							itemsList.append('<p><a href="/authentication-template/yang/details?id=' + element.id + '">' + element.name + '</a></p>');
 						});
 						itemsList.removeClass('hidden');
 					})

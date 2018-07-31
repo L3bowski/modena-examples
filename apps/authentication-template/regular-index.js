@@ -34,7 +34,7 @@ configureYingRoutes(router, passportMiddleware);
 configureYangRoutes(router, passportMiddleware);
 
 // TODO Resolve the Url issue
-server.use('/modena-authentication-template', router);
+server.use('/authentication-template', router);
 
 server.listen(80, error => {
 	if (error) {

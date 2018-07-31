@@ -12,14 +12,14 @@ $(function() {
 		deleteButton.on('click', function() {
 			$.ajax({
 				method: 'DELETE',
-				url: '/modena-authentication-template/api/yang',
+				url: '/authentication-template/api/ying',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					id: elementId
 				})
 			})
 			.then(function (element) {
-				document.location.href = '/modena-authentication-template/yang/';
+				document.location.href = '/authentication-template/ying/';
 			})
 			.fail(window.application.ajaxFailHandler);
 		});
@@ -30,11 +30,11 @@ $(function() {
 			deleteButton.addClass('hidden');
 			unauthorizedMsg.addClass('hidden');
 
-			if (user&& window.application.userHasSomePermission(user, ['yang:view', 'yang:edit', 'yang:delete'])) {
-				if (window.application.userHasPermission(user, 'yang:view')) {
+			if (user && window.application.userHasSomePermission(user, ['ying:view', 'ying:edit', 'ying:delete'])) {
+				if (window.application.userHasPermission(user, 'ying:view')) {
 					$.ajax({
 						method: 'GET',
-						url: '/modena-authentication-template/api/yang/getById',
+						url: '/authentication-template/api/ying/getById',
 						dataType: 'json',
 						data: {
 							id: elementWrapper.data('element-id')
@@ -47,11 +47,11 @@ $(function() {
 					.fail(window.application.ajaxFailHandler);
 				}
 
-				if (window.application.userHasPermission(user, 'yang:edit')) {
+				if (window.application.userHasPermission(user, 'ying:edit')) {
 					editButton.removeClass('hidden');
 				}
 
-				if (window.application.userHasPermission(user, 'yang:delete')) {
+				if (window.application.userHasPermission(user, 'ying:delete')) {
 					deleteButton.removeClass('hidden');
 				}
 			}
@@ -59,6 +59,6 @@ $(function() {
 				unauthorizedMsg.removeClass('hidden');
 			}
 		});
-		window.application.authentication.pageLoad(['yang:view', 'yang:edit', 'yang:delete']);
+		window.application.authentication.pageLoad(['ying:view', 'ying:edit', 'ying:delete']);
 	}
 });

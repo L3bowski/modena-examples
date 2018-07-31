@@ -5,11 +5,11 @@ const modelsDefinition = require('./models');
 const usersControllerFactory = require('./controllers/users-controller');
 
 const registerRoutes = (usersController, middleware) => {
-	router.get('/api/user', usersController.getAll);
-	router.get('/api/user/getById', usersController.getById);
-	router.post('/api/user', [middleware.bodyParser, usersController.create]);
-	router.put('/api/user', [middleware.bodyParser, usersController.update]);
-	router.delete('/api/user', usersController.deleteUser);
+	router.get('/api/users', usersController.getAll);
+	router.get('/api/users/getById', usersController.getById);
+	router.post('/api/users', middleware.bodyParser, usersController.create);
+	router.put('/api/users', middleware.bodyParser, usersController.update);
+	router.delete('/api/users', usersController.deleteUser);
 
 	return router;
 };
@@ -17,7 +17,7 @@ const registerRoutes = (usersController, middleware) => {
 const configureRouter = (middleware, utils, appConfig) => {
 
 	/*
-		appConfig will contain the properties starting with 'modena-database-api-template_' from the global configuration
+		appConfig will contain the properties starting with 'database-api-template_' from the global configuration
 		without that prefix
 	*/
 
