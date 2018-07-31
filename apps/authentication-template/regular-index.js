@@ -33,7 +33,6 @@ router.get('/client-side', passportMiddleware, (req, res, next) => {
 configureYingRoutes(router, passportMiddleware);
 configureYangRoutes(router, passportMiddleware);
 
-// TODO Resolve the Url issue
 server.use('/authentication-template', router);
 
 server.listen(80, error => {

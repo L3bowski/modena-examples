@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const authenticationService = require('../services/authentication-service');
 const localStrategy = require('./local-strategy');
+const config = require('../config/config.json');
 
 /* Passport user transformations */
 
@@ -60,7 +61,7 @@ const logOutMiddleware = (req, res, next) => {
 
 const jsonMiddleware = bodyParser.json();
 const sessionMiddleware = session({
-	secret: 'Secret to be stored in some untracked file',
+	secret: config.sessionSecret,
 	resave: false,
 	saveUninitialized: true,
 });
