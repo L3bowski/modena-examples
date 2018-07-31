@@ -8,27 +8,23 @@ const usersService = models => {
 	};
 
 	const getAll = (filter, page, pageSize) => {
-		return models.User.findAll({
-			include: [{
-				model: models.Skill,
-				as: 'Skills'
-			}],
-			where: {
+		page = page || 0;
+		pageSize = pageSize || 10;
+		const findOptions = {
+			limit: pageSize,
+      		offset: page * pageSize,
+		};
+		if (filter) {
+			findOptions.where = {
 				name: {
 					$like: `%${filter}%`
 				}
-			},
-			limit: pageSize,
-      		offset: page * pageSize,
-		});
+			};
+		}
+		return models.User.findAll(findOptions);
 	};
 
-	const getById = id => models.User.findById(id, {
-		include: [{
-			model: models.Skill,
-			as: 'Skills'
-		}]
-	});
+	const getById = id => models.User.findById(id);
 
 	const update = userData => {
 		const userFields = {
