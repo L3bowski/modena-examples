@@ -33,7 +33,7 @@ router.get('/client-side', passportMiddleware, (req, res, next) => {
 configureYingRoutes(router, passportMiddleware);
 configureYangRoutes(router, passportMiddleware);
 
-server.use('/authentication-template', router);
+server.use('/', router);
 
 server.listen(80, error => {
 	if (error) {

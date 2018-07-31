@@ -32,7 +32,7 @@ $(function() {
 		$('#log-in').on('click', function() {
 			$.ajax({
 				method: 'POST',
-				url: '/authentication-template/log-in',
+				url: '/log-in?namespace=authentication-template',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					username: $('#username').val(),
@@ -47,7 +47,7 @@ $(function() {
 		$('#log-out').on('click', function() {
 			$.ajax({
 				method: 'POST',
-				url: '/authentication-template/log-out'
+				url: '/log-out?namespace=authentication-template'
 			})
 			.then(function() {
 				authenticationHandler(null);
@@ -61,10 +61,11 @@ $(function() {
 		bindLoginForm(permissions);
 		return $.ajax({
 			method: 'GET',
-			url: '/authentication-template/client-side',
+			url: '/client-side',
 			dataType: 'json',
 			data: {
-				permissions: permissions
+				permissions: permissions,
+				namespace: 'authentication-template'
 			}
 		})
 		.then(function (clientData) {

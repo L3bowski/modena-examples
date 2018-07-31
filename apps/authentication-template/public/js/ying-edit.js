@@ -16,14 +16,14 @@ $(function() {
 		actionButton.on('click', function() {
 			$.ajax({
 				method: 'POST',
-				url: '/authentication-template/api/ying',
+				url: '/api/ying?namespace=authentication-template',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					name: elementName.val()
 				})
 			})
 			.then(function (element) {
-				document.location.href = '/authentication-template/ying/details?id=' + element.id;
+				document.location.href = '/ying/details?id=' + element.id + '&namespace=authentication-template';
 			})
 			.fail(window.application.ajaxFailHandler);
 		});
@@ -48,7 +48,7 @@ $(function() {
 		actionButton.on('click', function() {
 			$.ajax({
 				method: 'PUT',
-				url: '/authentication-template/api/ying',
+				url: '/api/ying?namespace=authentication-template',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					id: elementId,
@@ -56,7 +56,7 @@ $(function() {
 				})
 			})
 			.then(function (element) {
-				document.location.href = '/authentication-template/ying/details?id=' + element.id;
+				document.location.href = '/ying/details?id=' + element.id + '&namespace=authentication-template';
 			})
 			.fail(window.application.ajaxFailHandler);
 		});
@@ -69,10 +69,11 @@ $(function() {
 			if (user && window.application.userHasPermission(user, 'ying:edit')) {
 				return $.ajax({
 					method: 'GET',
-					url: '/authentication-template/api/ying/getById',
+					url: '/api/ying/getById',
 					dataType: 'json',
 					data: {
-						id: elementId
+						id: elementId,
+						namespace: 'authentication-template'
 					}
 				})
 				.then(function (element) {

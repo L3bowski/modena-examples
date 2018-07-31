@@ -26,7 +26,7 @@ dbConnection.sync()
 	router.put('/api/users', jsonMiddleware, usersController.update);
 	router.delete('/api/users', usersController.deleteUser);
 
-	server.use('/database-api-template', router);
+	server.use('/', router);
 
 	server.listen(80, error => {
 		if (error) {

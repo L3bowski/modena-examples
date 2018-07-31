@@ -12,14 +12,14 @@ $(function() {
 		deleteButton.on('click', function() {
 			$.ajax({
 				method: 'DELETE',
-				url: '/authentication-template/api/yang',
+				url: '/api/yang?namespace=authentication-template',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					id: elementId
 				})
 			})
 			.then(function (element) {
-				document.location.href = '/authentication-template/yang/';
+				document.location.href = '/yang?namespace=authentication-template';
 			})
 			.fail(window.application.ajaxFailHandler);
 		});
@@ -34,10 +34,11 @@ $(function() {
 				if (window.application.userHasPermission(user, 'yang:view')) {
 					$.ajax({
 						method: 'GET',
-						url: '/authentication-template/api/yang/getById',
+						url: '/api/yang/getById',
 						dataType: 'json',
 						data: {
-							id: elementWrapper.data('element-id')
+							id: elementWrapper.data('element-id'),
+							namespace: 'authentication-template'
 						}
 					})
 					.then(function (element) {

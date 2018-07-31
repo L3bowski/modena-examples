@@ -9,11 +9,11 @@
 <body>
 	<% include partials/_header.ejs %>
 
-	<a href="/authentication-template/yang">Back to list</a>
+	<a href="/yang?namespace=authentication-template">Back to list</a>
 
 	<div id="element-wrapper" data-element-id="<%= yangId %>"></div>
 
-    <a href="/authentication-template/yang/edit?id=<%= yangId %>" id="edit-element">Edit</a>
+    <a href="/yang/edit?id=<%= yangId %>&namespace=authentication-template" id="edit-element">Edit</a>
 
     <button type="button" id="delete-element">Delete</button>
 

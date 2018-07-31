@@ -16,12 +16,12 @@ $(function() {
 				if (window.application.userHasPermission(user, 'ying:view')) {
 					$.ajax({
 						method: 'GET',
-						url: '/authentication-template/api/ying',
+						url: '/api/ying?namespace=authentication-template',
 						dataType: 'json'
 					})
 					.then(function (ying) {
 						ying.forEach(function(element) {
-							itemsList.append('<p><a href="/authentication-template/ying/details?id=' + element.id + '">' + element.name + '</a></p>');
+							itemsList.append('<p><a href="/ying/details?id=' + element.id + '&namespace=authentication-template">' + element.name + '</a></p>');
 						});
 						itemsList.removeClass('hidden');
 					})
