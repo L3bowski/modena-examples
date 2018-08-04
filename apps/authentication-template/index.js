@@ -1,35 +1,45 @@
-const { express } = require('modena');
+const express = require('express');
+const server = express();
 const router = express.Router();
+const { join } = require('path');
+const assets = require('express-asset-versions');
 const authenticationService = require('./services/authentication-service');
 const configureYingRoutes = require('./controllers/ying');
 const configureYangRoutes = require('./controllers/yang');
+const {	logInMiddleware, logOutMiddleware, passportMiddleware } = require('./passport/setup');
 
-const configureRouter = (middleware, { userManagementUtils }) => {
+server.set('view engine', 'ejs');
+server.set('views', join(__dirname, 'views'));
 
-	userManagementUtils.createStrategy({
-		userAuthenticator: authenticationService.userAuthenticator,
-		userDeserializer: authenticationService.userDeserializer,
+const assetsPath = join(__dirname, 'public');
+server.use('/', express.static(assetsPath));
+server.use(assets('/', assetsPath));
+
+router.get('/', (req, res, next) => res.render('index'));
+
+router.post('/log-in', passportMiddleware, logInMiddleware, (req, res, next) => 
+	res.json(authenticationService.getClientSideInfo(req.user, req.body.permissions)));
+
+router.post('/log-out', passportMiddleware, logOutMiddleware, (req, res, next) =>
+	res.send('Successfully logged out'));
+
+router.get('/client-side', passportMiddleware, (req, res, next) => {
+	res.set('Content-Type', 'application/javascript');
+	return res.json({
+		user: authenticationService.getClientSideInfo(req.user, req.query.permissions)
 	});
+});
 
-	router.get('/', middleware.passport, (req, res, next) => res.render('index'));
+configureYingRoutes(router, passportMiddleware);
+configureYangRoutes(router, passportMiddleware);
 
-	router.post('/log-in', middleware.passport, userManagementUtils.logInMiddleware, (req, res, next) => 
-		res.json(authenticationService.getClientSideInfo(req.user, req.body.permissions)));
+server.use('/', router);
 
-	router.post('/log-out', middleware.passport, userManagementUtils.logOutMiddleware, (req, res, next) =>
-		res.send('Successfully logged out'));
-
-	router.get('/client-side', middleware.passport, (req, res, next) => {
-		res.set('Content-Type', 'application/javascript');
-		return res.json({
-			user: authenticationService.getClientSideInfo(req.user, req.query.permissions)
-		});
-	});
-
-	configureYingRoutes(router, middleware.passport);
-	configureYangRoutes(router, middleware.passport);
-	
-	return router;
-}
-
-module.exports = { configureRouter };
+server.listen(80, error => {
+	if (error) {
+		console.error(error);
+	}
+	else {
+		console.log('Express server listening on port 80');
+	}
+});

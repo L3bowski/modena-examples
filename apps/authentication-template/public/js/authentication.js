@@ -32,7 +32,7 @@ $(function() {
 		$('#log-in').on('click', function() {
 			$.ajax({
 				method: 'POST',
-				url: '/log-in?namespace=authentication-template',
+				url: '/log-in?$modena=authentication-template',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					username: $('#username').val(),
@@ -47,7 +47,7 @@ $(function() {
 		$('#log-out').on('click', function() {
 			$.ajax({
 				method: 'POST',
-				url: '/log-out?namespace=authentication-template'
+				url: '/log-out?$modena=authentication-template'
 			})
 			.then(function() {
 				authenticationHandler(null);
@@ -65,7 +65,7 @@ $(function() {
 			dataType: 'json',
 			data: {
 				permissions: permissions,
-				namespace: 'authentication-template'
+				$modena: 'authentication-template'
 			}
 		})
 		.then(function (clientData) {

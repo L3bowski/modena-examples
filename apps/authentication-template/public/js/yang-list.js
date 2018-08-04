@@ -16,12 +16,12 @@ $(function() {
 				if (window.application.userHasPermission(user, 'yang:view')) {
 					$.ajax({
 						method: 'GET',
-						url: '/api/yang?namespace=authentication-template',
+						url: '/api/yang?$modena=authentication-template',
 						dataType: 'json'
 					})
 					.then(function (yang) {
 						yang.forEach(function(element) {
-							itemsList.append('<p><a href="/yang/details?id=' + element.id + '&namespace=authentication-template">' + element.name + '</a></p>');
+							itemsList.append('<p><a href="/yang/details?id=' + element.id + '&$modena=authentication-template">' + element.name + '</a></p>');
 						});
 						itemsList.removeClass('hidden');
 					})

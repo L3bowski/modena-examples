@@ -1,11 +1,19 @@
-const { express } = require('modena');
-const router = express.Router();
+const express = require('express');
+const server = express();
+const { join } = require('path');
 
-const configureRouter = middleware => {
-    router.get('/', function (req, res, next) {
-        return res.render('index');
-    });
-    return router;
-}
+server.set('view engine', 'ejs');
+server.set('views', join(__dirname, 'views'));
 
-module.exports = { configureRouter };
+server.use('/', express.static(join(__dirname, 'public')));
+
+server.use('/', (req, res, next) => res.render('index'));
+
+server.listen(80, error => {
+	if (error) {
+		console.error(error);
+	}
+	else {
+		console.log('Express server listening on port 80');
+	}
+});

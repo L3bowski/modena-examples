@@ -2,9 +2,9 @@
   "name": "authentication-template",
   "version": "1.0.0",
   "description": "Modena application template with passport local authentication",
-  "main": "regular-index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node regular-index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Carles Capellas <capellas.carles@gmail.com>",

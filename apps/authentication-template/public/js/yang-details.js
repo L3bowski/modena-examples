@@ -12,14 +12,14 @@ $(function() {
 		deleteButton.on('click', function() {
 			$.ajax({
 				method: 'DELETE',
-				url: '/api/yang?namespace=authentication-template',
+				url: '/api/yang?$modena=authentication-template',
 				contentType: 'application/json',
 				data: JSON.stringify({
 					id: elementId
 				})
 			})
 			.then(function (element) {
-				document.location.href = '/yang?namespace=authentication-template';
+				document.location.href = '/yang?$modena=authentication-template';
 			})
 			.fail(window.application.ajaxFailHandler);
 		});
@@ -38,7 +38,7 @@ $(function() {
 						dataType: 'json',
 						data: {
 							id: elementWrapper.data('element-id'),
-							namespace: 'authentication-template'
+							$modena: 'authentication-template'
 						}
 					})
 					.then(function (element) {
