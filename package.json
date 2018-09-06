@@ -10,7 +10,7 @@
   "author": "Carles Capellas <capellas.carles@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "modena": "1.0.0-rc15",
+    "modena": "^1.0.6",
     "mysql2": "^1.5.3",
     "sequelize": "^4.38.0"
   }
