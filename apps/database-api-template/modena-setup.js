@@ -21,8 +21,8 @@ const configureRouter = (middleware, utils, appConfig) => {
 		without that prefix
 	*/
 
-	const dbConnection = new Sequelize(appConfig.db_name, appConfig.db_user, appConfig.db_password, {
-		host: appConfig.db_host,
+	const dbConnection = new Sequelize(appConfig.DB_NAME, appConfig.DB_USER, appConfig.DB_PASSWORD, {
+		host: appConfig.DB_HOST,
 		dialect: 'mysql'
 	});
 
