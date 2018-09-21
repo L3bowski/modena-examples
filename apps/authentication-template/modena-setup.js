@@ -1,11 +1,9 @@
-const { express } = require('modena');
-const router = express.Router();
+const { configureEndpoints } = require('modena');
 const authenticationService = require('./services/authentication-service');
 const configureYingRoutes = require('./controllers/ying');
 const configureYangRoutes = require('./controllers/yang');
 
-const configureRouter = (middleware, { userManagementUtils }) => {
-
+module.exports = configureEndpoints((router, config, middleware,  { userManagementUtils }) => {
 	userManagementUtils.createStrategy({
 		userAuthenticator: authenticationService.userAuthenticator,
 		userDeserializer: authenticationService.userDeserializer,
@@ -28,8 +26,4 @@ const configureRouter = (middleware, { userManagementUtils }) => {
 
 	configureYingRoutes(router, middleware.passport);
 	configureYangRoutes(router, middleware.passport);
-	
-	return router;
-}
-
-module.exports = { configureRouter };
+});

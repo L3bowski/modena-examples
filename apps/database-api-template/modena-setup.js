@@ -1,28 +1,16 @@
 const Sequelize = require('sequelize');
-const { express } = require('modena');
-const router = express.Router();
+const { configureEndpoints } = require('modena');
 const modelsDefinition = require('./models');
 const usersControllerFactory = require('./controllers/users-controller');
 
-const registerRoutes = (usersController, middleware) => {
-	router.get('/api/users', usersController.getAll);
-	router.get('/api/users/getById', usersController.getById);
-	router.post('/api/users', middleware.bodyParser, usersController.create);
-	router.put('/api/users', middleware.bodyParser, usersController.update);
-	router.delete('/api/users', usersController.deleteUser);
-
-	return router;
-};
-
-const configureRouter = (middleware, utils, appConfig) => {
-
+module.exports = configureEndpoints((router, config, middleware) => {
 	/*
-		appConfig will contain the properties starting with 'database-api-template_' from the global configuration
+		config will contain the properties starting with 'database-api-template_' from the global configuration
 		without that prefix
 	*/
 
-	const dbConnection = new Sequelize(appConfig.DB_NAME, appConfig.DB_USER, appConfig.DB_PASSWORD, {
-		host: appConfig.DB_HOST,
+	const dbConnection = new Sequelize(config.DB_NAME, config.DB_USER, config.DB_PASSWORD, {
+		host: config.DB_HOST,
 		dialect: 'mysql'
 	});
 
@@ -33,8 +21,10 @@ const configureRouter = (middleware, utils, appConfig) => {
 		const usersService = require('./services/users-service')(models);
 		const usersController = usersControllerFactory(usersService);
 
-		return registerRoutes(usersController, middleware);
+		router.get('/api/users', usersController.getAll);
+		router.get('/api/users/getById', usersController.getById);
+		router.post('/api/users', middleware.bodyParser, usersController.create);
+		router.put('/api/users', middleware.bodyParser, usersController.update);
+		router.delete('/api/users', usersController.deleteUser);
 	});
-}
-
-module.exports = { configureRouter };
+});
